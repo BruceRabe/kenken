@@ -1,0 +1,112 @@
+/* kenken css stylesheet */
+
+#game {
+  width: 50%;
+  float: left;
+  padding-left: 10px;
+}
+#cageForm {
+  width: 45%;
+  float: right;
+  text-align: left;
+}
+
+table {
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+.responsive-table {
+  width: 100%;
+  margin-top: 20px;
+}
+td {
+  border: 1px solid black;
+}
+td.cell {
+  background-color: white;
+  position: relative;
+  border-color: #000000;
+}
+td.cell.visible-xs {
+  border: 1px solid grey;
+}
+td.cell:before{
+  /* http://www.mademyday.de/css-height-equals-width-with-pure-css.html */
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+td.cell.selected{
+  background-color: #add8e6; /* light blue */
+}
+td.cell.topBlack {
+  border-top-width: 4px;
+  border-top-color: black;
+}
+td.cell.bottomBlack {
+  border-bottom-width: 4px;
+  border-bottom-color: black;
+}
+td.cell.leftBlack {
+  border-left-width: 4px;
+  border-left-color: black;
+}
+td.cell.rightBlack {
+  border-right-width: 4px;
+  border-right-color: black;
+}
+td.cell.topBlack.visible-xs {
+  border-top-width: 2px;
+}
+td.cell.bottomBlack.visible-xs {
+  border-bottom-width: 2px;
+}
+td.cell.leftBlack.visible-xs {
+  border-left-width: 2px;
+}
+td.cell.rightBlack.visible-xs {
+  border-right-width: 2px;
+}
+.content{
+  position:  absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.content.operand {
+  text-align: left;
+  vertical-align: top;
+  padding: 3%; /* give the text a little space to separate from the border */
+}
+.visible-xs. content.operand {
+  padding: 2px;
+}
+.content.value {
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 50%; /* give the text a little space to separate from the border */
+  color: blue;
+  font-size: larger;
+}
+
+.visible-xs .btn {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+#operand {
+  width: 5rem;
+}
+.spinner {
+  position: inherit;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px; /* half width of the spinner gif */
+  margin-top: -50px; /* half height of the spinner gif */
+  text-align:center;
+  z-index:1234;
+  overflow: auto;
+  width: 32px; /* width of the spinner gif */
+  height: 32px; /*hight of the spinner gif +2px to fix IE8 issue */
+}
+

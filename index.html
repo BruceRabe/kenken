@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="KenKenApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="KenKenApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="KenKenApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="KenKenApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>KenKen Solver</title>
+  <meta name="description" content="KenKen Solver">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="kenken.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+<body>
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <!--div ng-view></div-->
+
+  <div class="container" ng-controller="KenKenCtrl">
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <div class="btn-group visible-xs">
+          <button ng-click="newGame(4)" type="button" class="btn btn-primary">4x4</button>
+          <button ng-click="newGame(5)" type="button" class="btn btn-primary">5x5</button>
+          <button ng-click="newGame(6)" type="button" class="btn btn-primary">6x6</button>
+          <button ng-click="newGame(7)" type="button" class="btn btn-primary">7x7</button>
+          <button ng-click="newGame(8)" type="button" class="btn btn-primary">8x8</button>
+        </div>
+        <table class="responsive-table">
+          <tr ng-repeat="row in game.cells">
+            <td ng-repeat="col in range(game.rows) track by $index" ng-init="col=$index"
+                width={{cellWidth()}}
+                class="cell visible-xs"
+                ng-class="{'topBlack': row[$index].top,
+                                 'bottomBlack': row[$index].bottom,
+                                 'leftBlack': row[$index].left,
+                                 'rightBlack': row[$index].right,
+                                 'selected': row[$index].selected}"
+                ng-click="onClick($event, row, $index)">
+              <div class="content operand">
+                {{row[$index].content}}
+              </div>
+              <div class="content value">
+                {{row[$index].value}}
+              </div>
+            </td>
+            <td ng-repeat="col in range(game.rows) track by $index" ng-init="col=$index"
+                width={{cellWidth()}}
+                class="cell hidden-xs"
+                ng-class="{'topBlack': row[$index].top,
+                                 'bottomBlack': row[$index].bottom,
+                                 'leftBlack': row[$index].left,
+                                 'rightBlack': row[$index].right,
+                                 'selected': row[$index].selected}"
+                ng-click="onClick($event, row, $index)">
+              <div class="content operand">
+                {{row[$index].content}}
+              </div>
+              <div class="content value">
+                {{row[$index].value}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col-xs-6 col-md-6">
+        <div >
+          <form class="form-horizontal">
+            <h3>KenKen Solver</h3>
+            <fieldset>
+              <h3 class="hidden-xs">Create a Puzzle</h3>
+              <div class="control-group hidden-xs">
+                <label class="control-label">What size?</label>
+                <div class="controls">
+                  <!--button ng-click="newGame(4)" type="button" class="btn btn-lg btn-primary">4x4</button-->
+                  <a href="#" role="button" ng-click="newGame(4)" type="button" class="btn btn-lg btn-primary">4x4</a>
+                  <button ng-click="newGame(5)" type="button" class="btn btn-lg btn-primary">5x5</button>
+                  <button ng-click="newGame(6)" type="button" class="btn btn-lg btn-primary">6x6</button>
+                  <button ng-click="newGame(7)" type="button" class="btn btn-lg btn-primary">7x7</button>
+                  <button ng-click="newGame(8)" type="button" class="btn btn-lg btn-primary">8x8</button>
+                </div>
+              </div>
+              <!-- Text input-->
+              <div class="control-group">
+                <label class="control-label hidden-xs" for="operand">Click on cells in a cage and fill in the operand value:</label>
+                <label class="control-label visible-xs" for="operand">Select cells then operand:</label>
+                <div class="controls">
+                  <input ng-model="operand" max="999" id="operand" type="number" class="input-large">
+
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">And the operator:</label>
+                <div class="controls hidden-xs">
+                  <button ng-click="createNewCage('+')" ng-model="operator" type="button" class="btn btn-lg btn-primary">+</button>
+                  <button ng-click="createNewCage('-')" ng-model="operator" type="button" class="btn btn-lg btn-primary">-</button>
+                  <button ng-click="createNewCage('x')" ng-model="operator" type="button" class="btn btn-lg btn-primary">x</button>
+                  <button ng-click="createNewCage('%')" ng-model="operator" type="button" class="btn btn-lg btn-primary">%</button>
+                  <button ng-click="createNewCage('=')" ng-model="operator" type="button" class="btn btn-lg btn-primary">=</button>
+                </div>
+                <div class="controls visible-xs">
+                  <button ng-click="createNewCage('+')" ng-model="operator" type="button" class="btn btn-primary">+</button>
+                  <button ng-click="createNewCage('-')" ng-model="operator" type="button" class="btn btn-primary">-</button>
+                  <button ng-click="createNewCage('x')" ng-model="operator" type="button" class="btn btn-primary">x</button>
+                  <button ng-click="createNewCage('%')" ng-model="operator" type="button" class="btn btn-primary">%</button>
+                  <button ng-click="createNewCage('=')" ng-model="operator" type="button" class="btn btn-primary">=</button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+          <div class="hidden-xs">
+            <h3>Solve the Puzzle</h3>
+            <button ng-click="showOneCell()" type="button" class="btn btn-lg btn-primary">Show one cell
+              <div ng-show="game.solving" id="spinner" class="spinner" style="display:inline-block;">
+                <img id="img-spinner" src="loading.gif" alt="Loading"/>
+              </div>
+            </button>
+            <button ng-click="solvePuzzle()" type="button" class="btn btn-lg btn-primary">Show it all</button>
+            <!--button ng-click="saveGame()" type="button" class="btn">save JSON</button-->
+            <!--button ng-click="getGame('game2')" type="button" class="btn">game2</button-->
+          </div>
+          <div class="visible-xs">
+            <button ng-click="showOneCell()" type="button" class="btn btn-primary">One</button>
+            <button ng-click="solvePuzzle()" type="button" class="btn btn-primary">All</button>
+            <!--button ng-click="saveGame()" type="button" class="btn">save JSON</button-->
+            <!--button ng-click="getGame('game2')" type="button" class="btn">game2</button-->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="view1/kenken.js"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+{
+  "rows": 7,
+  "cages": [
+    {
+      "operand": "6",
+      "operator": "-",
+      "cells": [
+        {
+          "row": 0,
+          "col": 0
+        },
+        {
+          "row": 0,
+          "col": 1
+        }
+      ]
+    },
+    {
+      "operand": "6",
+      "operator": "+",
+      "cells": [
+        {
+          "row": 1,
+          "col": 0
+        },
+        {
+          "row": 1,
+          "col": 1
+        }
+      ]
+    },
+    {
+      "operand": "6",
+      "operator": "x",
+      "cells": [
+        {
+          "row": 5,
+          "col": 5
+        },
+        {
+          "row": 5,
+          "col": 6
+        }
+      ]
+    },
+    {
+      "operand": "6",
+      "operator": "=",
+      "cells": [
+        {
+          "row": 2,
+          "col": 3
+        }
+      ]
+    },
+    {
+      "operand": "1",
+      "operator": "=",
+      "cells": [
+        {
+          "row": 3,
+          "col": 2
+        }
+      ]
+    },
+    {
+      "operand": "1",
+      "operator": "-",
+      "cells": [
+        {
+          "row": 3,
+          "col": 1
+        },
+        {
+          "row": 4,
+          "col": 1
+        }
+      ]
+    },
+    {
+      "operand": "12",
+      "operator": "+",
+      "cells": [
+        {
+          "row": 6,
+          "col": 5
+        },
+        {
+          "row": 6,
+          "col": 6
+        }
+      ]
+    },
+    {
+      "operand": "12",
+      "operator": "+",
+      "cells": [
+        {
+          "row": 6,
+          "col": 0
+        },
+        {
+          "row": 6,
+          "col": 1
+        },
+        {
+          "row": 6,
+          "col": 2
+        }
+      ]
+    },
+    {
+      "operand": "15",
+      "operator": "x",
+      "cells": [
+        {
+          "row": 0,
+          "col": 6
+        },
+        {
+          "row": 1,
+          "col": 6
+        },
+        {
+          "row": 2,
+          "col": 6
+        }
+      ]
+    },
+    {
+      "operand": "13",
+      "operator": "+",
+      "cells": [
+        {
+          "row": 0,
+          "col": 5
+        },
+        {
+          "row": 1,
+          "col": 5
+        },
+        {
+          "row": 2,
+          "col": 5
+        }
+      ]
+    },
+    {
+      "operand": "36",
+      "operator": "x",
+      "cells": [
+        {
+          "row": 0,
+          "col": 2
+        },
+        {
+          "row": 0,
+          "col": 3
+        },
+        {
+          "row": 0,
+          "col": 4
+        }
+      ]
+    },
+    {
+      "operand": "84",
+      "operator": "x",
+      "cells": [
+        {
+          "row": 1,
+          "col": 2
+        },
+        {
+          "row": 1,
+          "col": 3
+        },
+        {
+          "row": 2,
+          "col": 2
+        }
+      ]
+    },
+    {
+      "operand": "2",
+      "operator": "-",
+      "cells": [
+        {
+          "row": 1,
+          "col": 4
+        },
+        {
+          "row": 2,
+          "col": 4
+        }
+      ]
+    },
+    {
+      "operand": "15",
+      "operator": "+",
+      "cells": [
+        {
+          "row": 3,
+          "col": 3
+        },
+        {
+          "row": 3,
+          "col": 4
+        },
+        {
+          "row": 3,
+          "col": 5
+        }
+      ]
+    },
+    {
+      "operand": "24",
+      "operator": "x",
+      "cells": [
+        {
+          "row": 3,
+          "col": 6
+        },
+        {
+          "row": 4,
+          "col": 5
+        },
+        {
+          "row": 4,
+          "col": 6
+        }
+      ]
+    },
+    {
+      "operand": "7",
+      "operator": "=",
+      "cells": [
+        {
+          "row": 4,
+          "col": 4
+        }
+      ]
+    },
+    {
+      "operand": "10",
+      "operator": "x",
+      "cells": [
+        {
+          "row": 4,
+          "col": 3
+        },
+        {
+          "row": 5,
+          "col": 3
+        },
+        {
+          "row": 5,
+          "col": 4
+        }
+      ]
+    },
+    {
+      "operand": "3",
+      "operator": "%",
+      "cells": [
+        {
+          "row": 6,
+          "col": 3
+        },
+        {
+          "row": 6,
+          "col": 4
+        }
+      ]
+    },
+    {
+      "operand": "2",
+      "operator": "-",
+      "cells": [
+        {
+          "row": 4,
+          "col": 2
+        },
+        {
+          "row": 5,
+          "col": 2
+        }
+      ]
+    },
+    {
+      "operand": "9",
+      "operator": "+",
+      "cells": [
+        {
+          "row": 4,
+          "col": 0
+        },
+        {
+          "row": 5,
+          "col": 0
+        },
+        {
+          "row": 5,
+          "col": 1
+        }
+      ]
+    },
+    {
+      "operand": "10",
+      "operator": "+",
+      "cells": [
+        {
+          "row": 2,
+          "col": 0
+        },
+        {
+          "row": 2,
+          "col": 1
+        },
+        {
+          "row": 3,
+          "col": 0
+        }
+      ]
+    }
+  ]
+
+}
