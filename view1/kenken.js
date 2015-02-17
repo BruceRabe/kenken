@@ -113,6 +113,10 @@ angular.module('KenKenApp', ['ngRoute'])
             alert("No or invalid operand value was specified for the cage.");
             return false;
         }
+        if ( cage.operand <= 0 ) {
+            alert("Operands have to be positive.");
+            return false;
+        }
         if ( !cage.operator  ) {
             alert("No operator type was specified for the cage.");
             return false;
@@ -555,6 +559,7 @@ angular.module('KenKenApp', ['ngRoute'])
     var checkEachCageForCellCount = function() {
         for (var i = 0; i < $scope.game.cages.length; i++) {
             var cage = $scope.game.cages[i];
+            // TODO check for positive numbers in cells
             switch (cage.operator) {
                 case '=':
                     if ( cage.cells.length != 1 ) {
@@ -582,7 +587,7 @@ angular.module('KenKenApp', ['ngRoute'])
                     break;
                 case '%':
                     if ( cage.cells.length != 2 ) {
-                        alert("Cage with % should have only one cell");
+                        alert("Cage with % should have only two cells");
                         return false;
                     }
                     break;
