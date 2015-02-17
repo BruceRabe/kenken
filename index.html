@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>KenKen Solver</title>
-  <meta name="description" content="KenKen Solver">
+  <meta name="description" content="Responsive KenKen Solver">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
@@ -29,7 +29,6 @@
           <button ng-click="newGame(5)" type="button" class="btn btn-primary">5x5</button>
           <button ng-click="newGame(6)" type="button" class="btn btn-primary">6x6</button>
           <button ng-click="newGame(7)" type="button" class="btn btn-primary">7x7</button>
-          <button ng-click="newGame(8)" type="button" class="btn btn-primary">8x8</button>
         </div>
         <table class="responsive-table">
           <tr ng-repeat="row in game.cells">
@@ -72,7 +71,7 @@
       <div class="col-xs-6 col-md-6">
         <div >
           <form class="form-horizontal">
-            <h3>KenKen Solver</h3>
+            <h3>Responsive KenKen Solver</h3>
             <fieldset>
               <h3 class="hidden-xs">Create a Puzzle</h3>
               <div class="control-group hidden-xs">
@@ -83,7 +82,6 @@
                   <button ng-click="newGame(5)" type="button" class="btn btn-lg btn-primary">5x5</button>
                   <button ng-click="newGame(6)" type="button" class="btn btn-lg btn-primary">6x6</button>
                   <button ng-click="newGame(7)" type="button" class="btn btn-lg btn-primary">7x7</button>
-                  <button ng-click="newGame(8)" type="button" class="btn btn-lg btn-primary">8x8</button>
                 </div>
               </div>
               <!-- Text input-->
@@ -118,13 +116,13 @@
           <div class="hidden-xs">
             <h3>Solve the Puzzle</h3>
             <button ng-click="showOneCell()" type="button" class="btn btn-lg btn-primary">Show one cell
-              <!--div ng-show="game.solving" id="spinner" class="spinner" style="display:inline-block;">
+              <div ng-show="game.solving" id="spinner" class="spinner" style="display:inline-block;">
                 <img id="img-spinner" src="loading.gif" alt="Loading"/>
-              </div-->
+              </div>
             </button>
             <button ng-click="solvePuzzle()" type="button" class="btn btn-lg btn-primary">Show it all</button>
-            <!--button ng-click="saveGame()" type="button" class="btn">save JSON</button-->
-            <!--button ng-click="getGame('game2')" type="button" class="btn">game2</button-->
+            <button ng-click="saveGame()" type="button" class="btn">save JSON</button>
+            <button ng-click="getGame('game2')" type="button" class="btn">game2</button>
           </div>
           <div class="visible-xs">
             <button ng-click="showOneCell()" type="button" class="btn btn-primary">One</button>
@@ -132,6 +130,7 @@
             <!--button ng-click="saveGame()" type="button" class="btn">save JSON</button-->
             <!--button ng-click="getGame('game2')" type="button" class="btn">game2</button-->
           </div>
+          <p class="rules"><a href="http://www.nytimes.com/ref/crosswords/kenken.html" target="_blank">KenKen rules</a></p>
         </div>
       </div>
 

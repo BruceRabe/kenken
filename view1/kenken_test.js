@@ -36,8 +36,8 @@ describe('KenKenApp module', function () {
         it('should create a new game of 4x4', function() {
     //        expect(scope).equals(kenkenCtrl.$scope);
             kenkenCtrl.$scope.newGame(4);
-            expect(scope.game.rows == 4)
-            expect(scope.game.solving == false);
+            expect(scope.game.rows).toBe(4)
+            expect(scope.game.solving).toBe(false);
         });
 
         it('range(len) should return empty array of size 8', function(){
@@ -81,6 +81,39 @@ describe('KenKenApp module', function () {
             expect(scope.game.cells[1][1].right).toBe(true);
 
         });
+
+        it('fails correctly with too many operands for operator =', function() {
+            var len = 4;
+            scope.newGame(len);
+
+            // init the row[] col[] array for 1,1
+            var row = Array(len);
+            row.row = 1;
+            row[1] = {"content": "", "cage": -1};
+            scope.onClick(null, row, 1);
+            row[2] = {"content": "", "cage": -1};
+            scope.onClick(null, row, 2);
+
+            // now it should work with the operand
+            scope.operand = 33;
+            scope.createNewCage('=');
+            expect(scope.game.cells[1][1].content).toBe("33=");
+            expect(scope.game.cells[1][1].cage).toBe(0);
+            expect(scope.game.cells[1][1].top).toBe(true);
+            expect(scope.game.cells[1][1].bottom).toBe(true);
+            expect(scope.game.cells[1][1].left).toBe(true);
+            expect(scope.game.cells[1][1].right).toBe(false);
+
+            expect(scope.game.cells[1][2].cage).toBe(0);
+            expect(scope.game.cells[1][2].top).toBe(true);
+            expect(scope.game.cells[1][2].bottom).toBe(true);
+            expect(scope.game.cells[1][2].left).toBe(false);
+            expect(scope.game.cells[1][2].right).toBe(true);
+
+            expect(scope.showOneCell()).toBe(false);
+            expect(scope.game.solving).toBe(false);
+
+        } );
 
         it('solves a saved game2 correctly', inject(function($injector) {
             // Set up the mock http service responses
@@ -420,6 +453,7 @@ describe('KenKenApp module', function () {
             $httpBackend.expectGET('games/game2');
             scope.getGame('game2');
             $httpBackend.flush();
+            expect(scope.solvePuzzleButDontShowSolution()).toBe(true);
             scope.showOneCell();
             expect(scope.game.cells[0][0].value).toBe(7);
             scope.showOneCell();

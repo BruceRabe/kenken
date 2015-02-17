@@ -110,7 +110,7 @@ angular.module('KenKenApp', ['ngRoute'])
     var updateCellsFromCage = function(cage, cageNum, cells) {
         // validate
         if ( !cage.operand ) {
-            alert("No operand value was specified for the cage.");
+            alert("No or invalid operand value was specified for the cage.");
             return false;
         }
         if ( !cage.operator  ) {
@@ -348,43 +348,71 @@ angular.module('KenKenApp', ['ngRoute'])
     var rowSelection;
 
     var gameSolved = false;  // has the game been solved?
+    var showGuesses = false; // show the current guesses when solving
     var stop; // save the $interval ID
 
     // solve the puzzle and update the grid with the guesses periodically
     $scope.solvePuzzle = function () {
-        initGrid();
+        if ( !initGridSolving() )
+            return false;
 
         // call this every 5 ms to update the display with current guess
+        showGuesses = true;
         stop = $interval(intervalFunction, 5);
+        return true;
     }
 
+    // solve the puzzle if needed and show the next uncovered cell
     $scope.showOneCell = function() {
-        if ( !gameSolved ) {
-            $scope.game.solving = true;
-            solvePuzzleButDontShowSolution();
-            $scope.game.solving = false;
+        if ( gameSolved ) {
+            showNextCellValue();
+            return true;
         }
 
+        if ( $scope.game.solving ) {
+            // turn off interval and stop solving
+            $interval.cancel(stop);
+            stop = undefined;
+            $scope.game.solving = false;
+            return false;
+        }
+
+        if ( !initGridSolving() )
+            return false;
+
+        // call this every 5 ms to update the display with current guess
+        showGuesses = false;
+        $scope.game.solving = true;
+        stop = $interval(intervalFunction, 5);
+        return true;
+//            var ret = solvePuzzleButDontShowSolution();
+
+    }
+
+    var showNextCellValue = function () {
         // display the next undefined cell
         for (var row = 0; row < getGameSize(); row++) {
             for (var col = 0; col < getGameSize(); col++) {
                 if ( $scope.game.cells[row][col].value == undefined ) {
                     $scope.game.cells[row][col].value = curGrid.getRowCol(row, col);
-                    return;
+                    return true;
                 }
             }
         }
+        return true;
 
     }
 
-    var initGrid = function() {
+    // setup the variables to start solving the puzzle
+    // return true if everything is OK and false if not
+    var initGridSolving = function() {
         gameSolved = false;
 
         // TODO make sure all the cells are in a cage
 
         // double check for valid number of cells for each operator
-        if ( !validateCages() ) {
-            return;
+        if ( !checkEachCageForCellCount() ) {
+            return false;
         }
 
         // now sort the cages by row to make the algo a little faster
@@ -415,10 +443,12 @@ angular.module('KenKenApp', ['ngRoute'])
                 curGrid.indexes[y][x] = undefined;
             }
         }
+        return true;
     }
 
     // this is called by the $interval callback so we can update the cells with the current guess
     var intervalFunction = function() {
+        // try the next 1000 iterations to see if they work
         var i = 1000;
         while (i-- && !gameSolved) {
             if (checkNextIteration()) {
@@ -430,20 +460,31 @@ angular.module('KenKenApp', ['ngRoute'])
             // turn off interval
             $interval.cancel(stop);
             stop = undefined;
+            $scope.game.solving = false;
+            if ( !showGuesses ) {
+                showNextCellValue();
+            }
         }
-        fillInGuess();
+
+        if ( showGuesses ) {
+            fillInGuess();
+        }
     }
 
-    var solvePuzzleButDontShowSolution = function() {
-        initGrid();
+    // solve the puzzle but don't show the solution yet
+    //  return true if solved and false if not
+    $scope.solvePuzzleButDontShowSolution = function() {
+        if ( !initGridSolving() )
+            return false;
         var i = 1000000;
         while (i-- && !gameSolved) {
             if (checkNextIteration()) {
                 gameSolved = true;
-                return;
+                return true;
             }
         }
         alert("Could not solve puzzle");
+        return false;
     }
 
     // fill in the solutions for each cell from curGrid
@@ -511,7 +552,7 @@ angular.module('KenKenApp', ['ngRoute'])
 
     // make sure each cage has the right number of cells for the operator
     //  return true if OK and false if not
-    var validateCages = function() {
+    var checkEachCageForCellCount = function() {
         for (var i = 0; i < $scope.game.cages.length; i++) {
             var cage = $scope.game.cages[i];
             switch (cage.operator) {
