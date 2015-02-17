@@ -1,5 +1,11 @@
 # KenKen app
+I love to solve KenKen puzzles, but I have some trouble with the Sunday New York Times 7 by 7 puzzle.
+So I created a responsive HTML5 app using AngularJS and Bootstrap to provide some hints. Just fill in the puzzle and
+press the Solve buttons to uncover one cell or all of them.
 
+http://brucerabe.com/kenken/
+
+You can find more info on KenKen at http://www.nytimes.com/ref/crosswords/kenken.html
 
 ## Testing
 
