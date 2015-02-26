@@ -94,7 +94,7 @@ td.cell.rightBlack.visible-xs {
   margin-bottom: 5px;
   margin-top: 5px;
 }
-#operand {
+.input-large {
   width: 5rem;
 }
 .spinner {

@@ -69,13 +69,15 @@
       </div>
 
       <div class="col-xs-6 col-md-6">
-        <div >
+        <div>
           <form class="form-horizontal">
             <h3>Responsive KenKen Solver</h3>
             <fieldset>
               <h3 class="hidden-xs">Create a Puzzle</h3>
+
               <div class="control-group hidden-xs">
                 <label class="control-label">What size?</label>
+
                 <div class="controls">
                   <!--button ng-click="newGame(4)" type="button" class="btn btn-lg btn-primary">4x4</button-->
                   <a href="#" role="button" ng-click="newGame(4)" type="button" class="btn btn-lg btn-primary">4x4</a>
@@ -88,27 +90,44 @@
               <div class="control-group">
                 <label class="control-label hidden-xs" for="operand">Click on cells in a cage and fill in the operand value:</label>
                 <label class="control-label visible-xs" for="operand">Select cells then operand:</label>
-                <div class="controls">
-                  <input ng-model="operand" max="999" id="operand" type="number" class="input-large">
 
+                <div class="controls">
+                  <input focus-if="setFocus" ng-model="operand" max="999" id="operand" type="number"
+                         class="input-large">
                 </div>
               </div>
 
               <div class="control-group">
                 <label class="control-label">And the operator:</label>
+
                 <div class="controls hidden-xs">
-                  <button ng-click="createNewCage('+')" ng-model="operator" type="button" class="btn btn-lg btn-primary">+</button>
-                  <button ng-click="createNewCage('-')" ng-model="operator" type="button" class="btn btn-lg btn-primary">-</button>
-                  <button ng-click="createNewCage('x')" ng-model="operator" type="button" class="btn btn-lg btn-primary">x</button>
-                  <button ng-click="createNewCage('%')" ng-model="operator" type="button" class="btn btn-lg btn-primary">%</button>
-                  <button ng-click="createNewCage('=')" ng-model="operator" type="button" class="btn btn-lg btn-primary">=</button>
+                  <button ng-click="createNewCage('+')" ng-model="operator" type="button"
+                          class="btn btn-lg btn-primary">+
+                  </button>
+                  <button ng-click="createNewCage('-')" ng-model="operator" type="button"
+                          class="btn btn-lg btn-primary">-
+                  </button>
+                  <button ng-click="createNewCage('x')" ng-model="operator" type="button"
+                          class="btn btn-lg btn-primary">x
+                  </button>
+                  <button ng-click="createNewCage('%')" ng-model="operator" type="button"
+                          class="btn btn-lg btn-primary">%
+                  </button>
+                  <button ng-click="createNewCage('=')" ng-model="operator" type="button"
+                          class="btn btn-lg btn-primary">=
+                  </button>
                 </div>
                 <div class="controls visible-xs">
-                  <button ng-click="createNewCage('+')" ng-model="operator" type="button" class="btn btn-primary">+</button>
-                  <button ng-click="createNewCage('-')" ng-model="operator" type="button" class="btn btn-primary">-</button>
-                  <button ng-click="createNewCage('x')" ng-model="operator" type="button" class="btn btn-primary">x</button>
-                  <button ng-click="createNewCage('%')" ng-model="operator" type="button" class="btn btn-primary">%</button>
-                  <button ng-click="createNewCage('=')" ng-model="operator" type="button" class="btn btn-primary">=</button>
+                  <button ng-click="createNewCage('+')" ng-model="operator" type="button" class="btn btn-primary">+
+                  </button>
+                  <button ng-click="createNewCage('-')" ng-model="operator" type="button" class="btn btn-primary">-
+                  </button>
+                  <button ng-click="createNewCage('x')" ng-model="operator" type="button" class="btn btn-primary">x
+                  </button>
+                  <button ng-click="createNewCage('%')" ng-model="operator" type="button" class="btn btn-primary">%
+                  </button>
+                  <button ng-click="createNewCage('=')" ng-model="operator" type="button" class="btn btn-primary">=
+                  </button>
                 </div>
               </div>
             </fieldset>
@@ -130,7 +149,8 @@
             <!--button ng-click="saveGame()" type="button" class="btn">save JSON</button-->
             <!--button ng-click="getGame('game2')" type="button" class="btn">game2</button-->
           </div>
-          <p class="rules"><a href="http://www.nytimes.com/ref/crosswords/kenken.html" target="_blank">KenKen rules</a></p>
+          <p class="rules"><a href="http://www.nytimes.com/ref/crosswords/kenken.html" target="_blank">KenKen rules</a>
+          </p>
         </div>
       </div>
 

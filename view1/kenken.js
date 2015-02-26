@@ -3,7 +3,6 @@
 // Declare app level module which depends on views, and components
 angular.module('KenKenApp', ['ngRoute'])
 
-
 .controller('KenKenCtrl', ['$scope', '$log', '$http', '$filter', '$interval',
     function($scope, $log, $http, $filter, $interval) {
     $scope.$log = $log;
@@ -263,11 +262,14 @@ angular.module('KenKenApp', ['ngRoute'])
     }
 
     // scope variables for the cage creation form
+    $scope.setFocus = false;
     $scope.operand = "";
 //    $scope.operator = "=";
 
+
     // create a new cage using the scope variables and selected cells
     $scope.createNewCage = function(operator) {
+
         //  make sure at least one cell is selected
         if ( selectedCells.length == 0 ) {
             alert("Please click on at least one cell in the game");
@@ -297,6 +299,9 @@ angular.module('KenKenApp', ['ngRoute'])
         if ( updateCellsFromCage(cage, cageNum, $scope.game.cells) ) {
             // remove the selections
             unSelectCells();
+
+            // now set the focus to the operand for the next round
+            $scope.setFocus = true;
         }
     }
 
@@ -706,4 +711,20 @@ angular.module('KenKenApp', ['ngRoute'])
     // get started with 7x7 - needs to be defined AFTER all functions it uses
     $scope.newGame(7);
 
+}])
+
+// this directive is used in the <input focus-if="setFocus" ng-model="operand"> to switch the focus back after clicking operator
+// from http://ruoyusun.com/2013/08/24/a-glimpse-of-angularjs-scope-via-example.html
+.directive('focusIf', [function () {
+    return function focusIf(scope, element, attr) {
+        scope.$watch(attr.focusIf, function (newVal) {
+            if (newVal) {
+                element[0].focus();
+                // You can write element.focus() if jQuery is available
+
+                // reset setFocus
+                scope.setFocus = false;
+            }
+        });
+    }
 }]);
