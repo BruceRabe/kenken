@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="kenken.css">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
   <!--[if lt IE 7]>
@@ -80,7 +80,8 @@
 
                 <div class="controls">
                   <!--button ng-click="newGame(4)" type="button" class="btn btn-lg btn-primary">4x4</button-->
-                  <a href="#" role="button" ng-click="newGame(4)" type="button" class="btn btn-lg btn-primary">4x4</a>
+                  
+                  <a href="#" ng-click="newGame(4)" type="button" role="button" class="btn btn-lg btn-primary">4x4</a>
                   <button ng-click="newGame(5)" type="button" class="btn btn-lg btn-primary">5x5</button>
                   <button ng-click="newGame(6)" type="button" class="btn btn-lg btn-primary">6x6</button>
                   <button ng-click="newGame(7)" type="button" class="btn btn-lg btn-primary">7x7</button>
@@ -92,7 +93,7 @@
                 <label class="control-label visible-xs" for="operand">Select cells then operand:</label>
 
                 <div class="controls">
-                  <input focus-if="setFocus" ng-model="operand" max="999" id="operand" type="number"
+                  <input focus-if="setFocus" ng-model="operand" max="999" min="0" id="operand" type="number"
                          class="input-large">
                 </div>
               </div>
@@ -151,6 +152,7 @@
           </div>
           <p class="rules"><a href="http://www.nytimes.com/ref/crosswords/kenken.html" target="_blank">KenKen rules</a>
           </p>
+          <p class="oss"><a href="https://github.com/avipars/kenken" target="_blank">View the code</a></p>
         </div>
       </div>
 
